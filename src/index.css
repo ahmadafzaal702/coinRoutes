@@ -1,0 +1,50 @@
+/* Include the Roboto font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-paragraph;
+    /* @apply font-paragraph max-w-screen-2xl mx-auto min-h-screen; */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-6xl font-extrabold tracking-widest;
+  }
+
+  h2 {
+    @apply text-xl sm:text-2xl font-semibold;
+  }
+
+  h3 {
+    @apply text-xl sm:text-2xl font-semibold;
+  }
+
+  h4 {
+    @apply text-lg font-semibold;
+  }
+
+  p {
+    @apply text-base text-paragraph font-paragraph font-normal;
+  }
+
+  ul li {
+    @apply text-base text-paragraph font-paragraph font-normal;
+  }
+}
+
+main {
+  min-height: calc(100vh - 41px);
+}
