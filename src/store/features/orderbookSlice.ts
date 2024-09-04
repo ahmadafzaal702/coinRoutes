@@ -19,10 +19,10 @@ const orderbookSlice = createSlice({
             if (changes.length > 5) {
                 const newBids = changes
                     .filter(([side]: any) => side === 'buy')
-                    .map(([side, price, size]: any) => ({ price, size }));
+                    .map(([price, size]: any) => ({ price, size }));
                 const newAsks = changes
                     .filter(([side]: any) => side === 'sell')
-                    .map(([side, price, size]: any) => ({ price, size }));
+                    .map(([price, size]: any) => ({ price, size }));
 
                 state.bids = newBids;
                 state.asks = newAsks;

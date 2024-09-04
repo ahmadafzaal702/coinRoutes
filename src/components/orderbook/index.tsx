@@ -1,31 +1,31 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { defaultModeButton, buyModeButton, sellModeButton } from '../../assets/icons/icons';
+// import { defaultModeButton, buyModeButton, sellModeButton } from '../../assets/icons/icons';
 
 const OrderBook = () => {
     const orderBookData = useSelector((state: any) => state.orderbook);
 
-    const dummyAsks = [
-        { price: '50000', size: '0.5' },
-        { price: '50010', size: '1.2' },
-        { price: '50020', size: '0.8' },
-        { price: '50020', size: '0.8' },
-        { price: '50020', size: '0.8' },
-    ];
+    // const dummyAsks = [
+    //     { price: '50000', size: '0.5' },
+    //     { price: '50010', size: '1.2' },
+    //     { price: '50020', size: '0.8' },
+    //     { price: '50020', size: '0.8' },
+    //     { price: '50020', size: '0.8' },
+    // ];
 
-    const dummyBids = [
-        { price: '49990', size: '0.3' },
-        { price: '49980', size: '0.7' },
-        { price: '49970', size: '2.0' },
-        { price: '49970', size: '2.0' },
-        { price: '49970', size: '2.0' },
-    ];
+    // const dummyBids = [
+    //     { price: '49990', size: '0.3' },
+    //     { price: '49980', size: '0.7' },
+    //     { price: '49970', size: '2.0' },
+    //     { price: '49970', size: '2.0' },
+    //     { price: '49970', size: '2.0' },
+    // ];
 
     const [view, setView] = useState('all');
 
-    const filteredAsks = view !== 'bids' ? dummyAsks : [];
-    const filteredBids = view !== 'asks' ? dummyBids : [];
+    // const filteredAsks = view !== 'bids' ? dummyAsks : [];
+    // const filteredBids = view !== 'asks' ? dummyBids : [];
 
     return (
         <div className="w-full h-full p-4 border-[1px] border-grey border-opacity-20">

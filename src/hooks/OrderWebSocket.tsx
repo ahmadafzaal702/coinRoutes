@@ -10,11 +10,11 @@ const useOrderWebSocket = (currency: string) => {
     const dispatch = useDispatch()
     const socketUrl = 'wss://ws-feed.exchange.coinbase.com';
 
-    const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {
+    const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl, {
         onOpen: () => {
             console.log('WebSocket connection opened');
         },
-        shouldReconnect: (closeEvent) => true,
+        shouldReconnect: () => true,
     });
 
     const subscribeMessage = useCallback((selectedCurrency: string, sub = true) => ({
