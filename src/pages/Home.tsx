@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { OrderBook, TradingViewChart, BidsCard, CurrencySelector, ChartWidget } from '../components';
+import { OrderBook, TradingViewChart, BidsCard, CurrencySelector, } from '../components';
 import useOrderWebSocket from '../hooks/OrderWebSocket';
 
 const Home: React.FC = () => {
