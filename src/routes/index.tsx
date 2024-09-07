@@ -5,6 +5,7 @@ import NavBar from '../components/layout/Navbar';
 
 const Home = lazy(() => import('../pages/Home'));
 const NotFound = lazy(() => import('../pages/NotFound'));
+import TestPage from '../pages/TestPage';
 
 const AppRoutes: React.FC = () => {
     return (
@@ -14,6 +15,7 @@ const AppRoutes: React.FC = () => {
                 <main className='bg-primary text-white'>
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/test" element={<TestPage />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>

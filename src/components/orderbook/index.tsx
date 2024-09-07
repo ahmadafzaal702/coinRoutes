@@ -1,31 +1,27 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { updateAggInterval } from '../../store/features/orderbookSlice';
+
+import { Select } from 'antd';
 
 // import { defaultModeButton, buyModeButton, sellModeButton } from '../../assets/icons/icons';
 
+const intervalOptions = [
+    { value: 0.01, label: '0.01' },
+    { value: 0.05, label: '0.05' },
+    { value: 0.10, label: '0.10' },
+];
+
 const OrderBook = () => {
+    const dispatch = useDispatch();
+    const aggIntervalValue = useSelector((state: any) => state.orderbook.aggInterval);
     const orderBookData = useSelector((state: any) => state.orderbook);
-
-    // const dummyAsks = [
-    //     { price: '50000', size: '0.5' },
-    //     { price: '50010', size: '1.2' },
-    //     { price: '50020', size: '0.8' },
-    //     { price: '50020', size: '0.8' },
-    //     { price: '50020', size: '0.8' },
-    // ];
-
-    // const dummyBids = [
-    //     { price: '49990', size: '0.3' },
-    //     { price: '49980', size: '0.7' },
-    //     { price: '49970', size: '2.0' },
-    //     { price: '49970', size: '2.0' },
-    //     { price: '49970', size: '2.0' },
-    // ];
-
     const [view, setView] = useState('all');
 
-    // const filteredAsks = view !== 'bids' ? dummyAsks : [];
-    // const filteredBids = view !== 'asks' ? dummyBids : [];
+    const IntervalChangeHandler = (value: number) => {
+        dispatch(updateAggInterval(value));
+    };
 
     return (
         <div className="w-full h-full p-4 border-[1px] border-grey border-opacity-20">
@@ -52,17 +48,31 @@ const OrderBook = () => {
                         Bids
                     </button>
                 </div>
-                <div>dropdown</div>
+                <div>
+                    <Select
+                        placeholder="Currency"
+                        onChange={IntervalChangeHandler}
+                        options={intervalOptions}
+                        value={aggIntervalValue}
+                        className='mb-4'
+                    />
+                </div>
             </div>
 
 
 
             <div className="flex flex-col gap-5">
                 {/* Asks Section */}
-                <div className={`${view === 'asks' || view === 'all' ? '' : 'hidden'} h-36 mt-2`}>
+                <div className={`${view === 'asks' || view === 'all' ? '' : 'hidden'} h-44 mt-2`}>
                     <h3 className="mb-2 text-base text-sell">Asks</h3>
                     <ul className="list-none p-0 m-0">
-                        {orderBookData.asks?.slice(0, 3).map((ask: any, index: any) => (
+                        
+                        <li className="flex justify-between py-1">
+                                <span className='text-white'>Price(USD)</span>
+                                <span className='text-white'>Amount({orderBookData?.product_id.substring(0, 3)})</span>
+                        </li>
+                        
+                        {orderBookData.asks?.slice(0, 4).map((ask: any, index: any) => (
                             <li key={index} className="flex justify-between py-1">
                                 <span className="text-sell">{ask.price}</span>
                                 <span className="text-sm text-white">{ask.size}</span>
@@ -72,10 +82,14 @@ const OrderBook = () => {
                 </div>
 
                 {/* Bids Section */}
-                <div className={`${view === 'bids' || view === 'all' ? '' : 'hidden'} h-36 mt-2`}>
+                <div className={`${view === 'bids' || view === 'all' ? '' : 'hidden'} h-44 mt-2`}>
                     <h3 className="mb-2 text-base text-buy">Bids</h3>
                     <ul className="list-none p-0 m-0">
-                        {orderBookData.asks?.slice(0, 3).map((bid: any, index: any) => (
+                    <li className="flex justify-between py-1">
+                                <span className='text-white'>Price(USD)</span>
+                                <span className='text-white'>Amount({orderBookData?.product_id.substring(0, 3)})</span>
+                    </li>
+                        {orderBookData.asks?.slice(0, 4).map((bid: any, index: any) => (
                             <li key={index} className="flex justify-between py-1">
                                 <span className="text-buy">{bid.price}</span>
                                 <span className="text-sm text-white">{bid.size}</span>

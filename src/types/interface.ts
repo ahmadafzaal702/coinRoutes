@@ -18,11 +18,32 @@ export interface TickerStateI {
     volume_30d: string;
 }
 
+// orderbook state interface
 export interface OrderBookStateI {
-    bids: { price: string; size: string }[];
-    asks: { price: string; size: string }[];
-    product_id: string,
-    time: string,
+    bids: OrderBookEntryI[] | undefined;
+    asks: OrderBookEntryI[] | undefined;
+    product_id: string | undefined;
+    time: string | undefined;
+    aggInterval: number,
+}
+
+// orderbook entry interface (bids and asks)
+export interface OrderBookEntryI {
+    side?: string;
+    price: number;
+    size: number;
+}
+
+export interface OrderBookPayloadI {
+    type: string;
+    product_id: string;
+    time: string;
+    changes: [string, string, string][]
+}
+
+export interface CurrencySelectorProps {
+    currency: string;
+    setCurrency: (currency: string) => void;
 }
 
 // types/websocketMessages.ts

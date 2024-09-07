@@ -11,7 +11,7 @@ const TradingViewChart = ({ currency }: { currency: string }) => {
         script.innerHTML = `
         {
           "autosize": true,
-          "height": "350",
+          "height": "600",
           "symbol": "COINBASE:${currency.replace("-", "")}",
           "interval": "W",
           "timezone": "Etc/UTC",
