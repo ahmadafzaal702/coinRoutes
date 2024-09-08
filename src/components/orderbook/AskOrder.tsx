@@ -9,7 +9,7 @@ const AskOrder = ({view}:{view:string}) => {
                     <h3 className="mb-2 text-base text-sell">Asks</h3>
                     <ul className="list-none p-0 m-0">
                         
-                        <li className="flex justify-between py-1">
+                        <li className="flex justify-between py-1 text-sm">
                                 <span className='text-white'>Price(USD)</span>
                                 <span className='text-white'>Amount({orderBookData?.product_id?.substring(0, 3) ?? ''})</span>
                         </li>
