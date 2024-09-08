@@ -1,5 +1,19 @@
 import { OrderBookEntryI } from "../types/interface";
 
+export const intervalOptions = [
+    { value: 0.01, label: '0.01' },
+    { value: 0.05, label: '0.05' },
+    { value: 0.10, label: '0.10' },
+];
+
+export const currencyOptions = [
+    { value: 'BTC-USD', label: 'BTC-USD' },
+    { value: 'ETH-USD', label: 'ETH-USD' },
+    { value: 'LTC-USD', label: 'LTC-USD' },
+    { value: 'BCH-USD', label: 'BCH-USD' },
+];
+
+
 export const aggregateOrderBook = (orderBook: OrderBookEntryI[], aggValue: number) => {
     const aggregatedOrders: any = {};
     
@@ -27,3 +41,4 @@ export const aggregateOrderBook = (orderBook: OrderBookEntryI[], aggValue: numbe
         }));
     }
 }
+

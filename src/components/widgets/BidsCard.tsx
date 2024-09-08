@@ -1,9 +1,4 @@
-interface IcardProps {
-    title: string,
-    price: string,
-    quantity: string,
-    bgColor: string,
-}
+import {IcardProps} from '../../types/interface';
 
 const BidsCard: React.FC<IcardProps> = ({ title, price, quantity, bgColor }) => {
     return (

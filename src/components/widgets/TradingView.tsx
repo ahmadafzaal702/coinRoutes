@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 const TradingViewChart = ({ currency }: { currency: string }) => {
-    const container: any = useRef();
+    const container = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -11,7 +11,7 @@ const TradingViewChart = ({ currency }: { currency: string }) => {
         script.innerHTML = `
         {
           "autosize": true,
-          "height": "600",
+          "height": "550",
           "symbol": "COINBASE:${currency.replace("-", "")}",
           "interval": "W",
           "timezone": "Etc/UTC",
@@ -23,13 +23,12 @@ const TradingViewChart = ({ currency }: { currency: string }) => {
           "support_host": "https://www.tradingview.com"
         }`;
 
-        // @ts-ignore
-        if (container.current.lastChild) {
-            // @ts-ignore
-            container.current.removeChild(container.current.lastChild)
+        if (container.current) {
+            if (container.current.lastChild) {
+                container.current.removeChild(container.current.lastChild);
+            }
+            container.current.appendChild(script);
         }
-        // @ts-ignore
-        container.current.appendChild(script);
 
     }, [currency]);
 
@@ -37,7 +36,7 @@ const TradingViewChart = ({ currency }: { currency: string }) => {
         <>
             <div className="tradingview-widget-container" ref={container} style={{ height: "100%", width: "100%" }}></div>
         </>
-    )
-}
+    );
+};
 
-export default TradingViewChart
+export default TradingViewChart;

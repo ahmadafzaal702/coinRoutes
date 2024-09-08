@@ -1,22 +1,20 @@
 import { useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store/store';
 import { updateAggInterval } from '../../store/features/orderbookSlice';
+
+import AskOrder from './AskOrder';
+import BidOrder from './BidOrder';
 
 import { Select } from 'antd';
 
-// import { defaultModeButton, buyModeButton, sellModeButton } from '../../assets/icons/icons';
-
-const intervalOptions = [
-    { value: 0.01, label: '0.01' },
-    { value: 0.05, label: '0.05' },
-    { value: 0.10, label: '0.10' },
-];
+import { intervalOptions } from '../../utils/utils';
 
 const OrderBook = () => {
     const dispatch = useDispatch();
-    const aggIntervalValue = useSelector((state: any) => state.orderbook.aggInterval);
-    const orderBookData = useSelector((state: any) => state.orderbook);
+    const orderBookData = useSelector((state: RootState) => state.orderbook);
+    
     const [view, setView] = useState('all');
 
     const IntervalChangeHandler = (value: number) => {
@@ -53,50 +51,15 @@ const OrderBook = () => {
                         placeholder="Currency"
                         onChange={IntervalChangeHandler}
                         options={intervalOptions}
-                        value={aggIntervalValue}
+                        value={orderBookData?.aggInterval}
                         className='mb-4'
                     />
                 </div>
             </div>
 
-
-
             <div className="flex flex-col gap-5">
-                {/* Asks Section */}
-                <div className={`${view === 'asks' || view === 'all' ? '' : 'hidden'} h-44 mt-2`}>
-                    <h3 className="mb-2 text-base text-sell">Asks</h3>
-                    <ul className="list-none p-0 m-0">
-                        
-                        <li className="flex justify-between py-1">
-                                <span className='text-white'>Price(USD)</span>
-                                <span className='text-white'>Amount({orderBookData?.product_id.substring(0, 3)})</span>
-                        </li>
-                        
-                        {orderBookData.asks?.slice(0, 4).map((ask: any, index: any) => (
-                            <li key={index} className="flex justify-between py-1">
-                                <span className="text-sell">{ask.price}</span>
-                                <span className="text-sm text-white">{ask.size}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                {/* Bids Section */}
-                <div className={`${view === 'bids' || view === 'all' ? '' : 'hidden'} h-44 mt-2`}>
-                    <h3 className="mb-2 text-base text-buy">Bids</h3>
-                    <ul className="list-none p-0 m-0">
-                    <li className="flex justify-between py-1">
-                                <span className='text-white'>Price(USD)</span>
-                                <span className='text-white'>Amount({orderBookData?.product_id.substring(0, 3)})</span>
-                    </li>
-                        {orderBookData.asks?.slice(0, 4).map((bid: any, index: any) => (
-                            <li key={index} className="flex justify-between py-1">
-                                <span className="text-buy">{bid.price}</span>
-                                <span className="text-sm text-white">{bid.size}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <AskOrder view={view} />
+                <BidOrder view={view} /> 
             </div>
         </div>
     );

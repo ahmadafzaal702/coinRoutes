@@ -46,7 +46,7 @@ export interface CurrencySelectorProps {
     setCurrency: (currency: string) => void;
 }
 
-// types/websocketMessages.ts
+
 export interface L2UpdateMessage {
     type: 'l2update';
 }
@@ -56,3 +56,11 @@ export interface TickerMessage {
 }
 
 export type WebSocketMessage = L2UpdateMessage | TickerMessage;
+
+
+export interface IcardProps {
+    title: string,
+    price: string,
+    quantity: string,
+    bgColor: string,
+}

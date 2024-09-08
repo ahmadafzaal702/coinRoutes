@@ -2,12 +2,7 @@ import React from 'react';
 import { Select } from 'antd';
 import { CurrencySelectorProps } from '../../types/interface';
 
-const currencyOptions = [
-    { value: 'BTC-USD', label: 'BTC-USD' },
-    { value: 'ETH-USD', label: 'ETH-USD' },
-    { value: 'LTC-USD', label: 'LTC-USD' },
-    { value: 'BCH-USD', label: 'BCH-USD' },
-];
+import {currencyOptions} from "../../utils/utils";
 
 const CurrencySelector: React.FC<CurrencySelectorProps> = ({ currency, setCurrency }) => {
     const currencyChangeHandler = (value: string) => {

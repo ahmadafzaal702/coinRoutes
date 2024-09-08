@@ -7,8 +7,8 @@
 
 @layer base {
   body {
-    @apply font-paragraph;
-    /* @apply font-paragraph max-w-screen-2xl mx-auto min-h-screen; */
+    /* @apply font-paragraph; */
+    @apply font-paragraph max-w-screen-2xl mx-auto min-h-screen;
   }
 
   h1,
