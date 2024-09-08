@@ -11,7 +11,7 @@ const BidOrder = ({view}:{view:string}) => {
                     <ul className="list-none p-0 m-0">
                     <li className="flex justify-between py-1">
                                 <span className='text-white'>Price(USD)</span>
-                                <span className='text-white'>Amount({orderBookData?.product_id.substring(0, 3)})</span>
+                                <span className='text-white'>Amount({orderBookData?.product_id?.substring(0, 3) ?? ''})</span>
                     </li>
                         {orderBookData.asks?.slice(0, 3).map((bid: any, index: any) => (
                             <li key={index} className="flex justify-between py-1">

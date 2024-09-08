@@ -11,7 +11,7 @@ const AskOrder = ({view}:{view:string}) => {
                         
                         <li className="flex justify-between py-1">
                                 <span className='text-white'>Price(USD)</span>
-                                <span className='text-white'>Amount({orderBookData?.product_id.substring(0, 3)})</span>
+                                <span className='text-white'>Amount({orderBookData?.product_id?.substring(0, 3) ?? ''})</span>
                         </li>
                         
                     {orderBookData.asks?.slice(0, 3).map((ask: any, index: any) => (
