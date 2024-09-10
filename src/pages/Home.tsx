@@ -10,7 +10,9 @@ import { OrderBook, TradingViewChart, BidsCard, CurrencySelector, } from '../com
 // Home Functional Component
 const Home = () => {
     const [currency, setCurrency] = useState<string>('BTC-USD');
-    const tickerState = useSelector((state: RootState) => state.ticker);
+
+    const orderBook = useSelector((state: RootState) => state.orderbook);
+    // console.log("orderBook", orderBook);
 
     // order book subscription and unsubscription on load and currency change
     const { subscribeOrderBook, unSubscribeOrderBook } = useOrderWebSocket(currency);
@@ -41,8 +43,8 @@ const Home = () => {
                     <CurrencySelector currency={currency} setCurrency={setCurrency} />
                 </div>
                 <div className={`flex flex-col gap-4`}>
-                    <BidsCard title="Best Bid" price={tickerState?.best_bid} quantity={tickerState?.best_bid_size} bgColor="bg-buy" />
-                    <BidsCard title="Best Ask" price={tickerState?.best_ask} quantity={tickerState?.best_ask_size} bgColor="bg-sell" />
+                    <BidsCard title="Best Bid" price={orderBook?.tickerList?.best_bid} quantity={orderBook?.tickerList?.best_bid_size} bgColor="bg-buy" />
+                    <BidsCard title="Best Ask" price={orderBook?.tickerList?.best_ask} quantity={orderBook?.tickerList?.best_ask_size} bgColor="bg-sell" />
                 </div>
             </div>
         </div>

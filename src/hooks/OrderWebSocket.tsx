@@ -3,8 +3,7 @@ import useWebSocket from 'react-use-websocket';
 import { WebSocketMessage } from '../types/interface';
 
 import { useDispatch } from 'react-redux';
-import { updateTicker } from '../store/features/tickerSlice';
-import { updateOrderBook } from '../store/features/orderbookSlice';
+import { updateOrderBook, setTickers } from '../store/features/orderbookSlice';
 
 const useOrderWebSocket = (currency: string) => {
     const dispatch = useDispatch()
@@ -46,7 +45,7 @@ const useOrderWebSocket = (currency: string) => {
                 // console.log('L2 Update:', message);
                 dispatch(updateOrderBook(message));
             } else if (message.type === 'ticker') {
-                dispatch(updateTicker(message));
+                dispatch(setTickers(message));
             }
         }
     }, [lastJsonMessage, dispatch]);
